@@ -1,38 +1,42 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private WaypointMovement _crussader;
-    [SerializeField] private List<Transform> _points = new List<Transform>();
     [SerializeField] private Transform _target;
     [SerializeField] private float _delay;
+    [SerializeField] private int _enemiesCount;
 
-    private float _currentTime = 0;
+    private Transform[] _spawnPoints;
+    private WaitForSeconds _waitForSeconds;
+    private Coroutine _coroutine;
 
-    Random _random = new Random();
-   
+    private Random _random = new Random();
+
     private void Start()
     {
-        _currentTime = _delay;
+        _waitForSeconds = new WaitForSeconds(_delay);
+
+        _spawnPoints = gameObject.GetComponentsInChildren<Transform>();
+
+        _coroutine = StartCoroutine(Create());
     }
 
-    void Update()
+    private IEnumerator Create()
     {
-        int randomPoint = _random.Next(_points.Count);
 
-        if(_currentTime <= 0)
+        for (int i = 1; i < _enemiesCount; i++)
         {
-            _currentTime = _delay;
-            WaypointMovement crussader = Instantiate(_crussader, _points[randomPoint].position, Quaternion.identity);
+            int randomPoint = _random.Next(_spawnPoints.Length);
+
+            WaypointMovement crussader = Instantiate(_crussader, _spawnPoints[randomPoint].position, Quaternion.identity);
             crussader.Init(_target);
+
+            yield return _waitForSeconds;
         }
-        else
-        {
-            _currentTime -= Time.deltaTime;
-        }
+
+        StopCoroutine(_coroutine);
     }
 }

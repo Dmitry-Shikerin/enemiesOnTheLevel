@@ -265,12 +265,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _crussader: {fileID: -3272240461045231621, guid: 3778ac0fad10f3842abaae2cff41b581, type: 3}
-  _points:
-  - {fileID: 1759644631}
-  - {fileID: 1258375223}
-  - {fileID: 2031019424}
   _target: {fileID: 797561954}
   _delay: 3
+  _enemiesCount: 10
 --- !u!1 &797561953
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffbde504d10c394b954c09ff9eb46e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Template: {fileID: 1949430161825482, guid: 3778ac0fad10f3842abaae2cff41b581, type: 3}
 --- !u!114 &1665058375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,11 +540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2547cb6303d4b8d4182e37160e66ada8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _a: {fileID: 1759644631}
-  _b: {fileID: 1258375223}
-  _enemiePoint: {fileID: 0}
-  _pathTime: 3
-  _pathRunningTime: 0
 --- !u!1 &1759644630
 GameObject:
   m_ObjectHideFlags: 0
